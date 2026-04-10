@@ -735,7 +735,12 @@
     const diff = target - now;
     if (diff <= 0) {
       clearInterval(countdownInterval);
-      launchFiesta();
+      const hoursElapsed = Math.abs(diff) / 3600000;
+      if (hoursElapsed < 24) {
+        launchFiesta();
+      } else {
+        launchMellow();
+      }
       return;
     }
     const d = Math.floor(diff / 86400000);
@@ -781,6 +786,21 @@
       `;
       container.appendChild(el);
     }
+  }
+
+  function launchMellow() {
+    document.querySelector('.hero').innerHTML = `
+      <img src="Spencer/IMG_0985.PNG" alt="Spencer and his fiancée" class="hero-couple" />
+      <h1 style="font-family:'Pacifico',cursive;font-size:clamp(2rem,6vw,3.8rem);color:white;text-shadow:3px 3px 0 rgba(0,0,0,0.2);line-height:1.15;margin-bottom:8px;">
+        Spencer's Final Fiesta
+      </h1>
+      <div style="font-size:1rem;color:rgba(255,255,255,0.85);font-weight:700;letter-spacing:2px;text-transform:uppercase;">
+        🇲🇽 Sayulita, Mexico · April 16–20, 2026 🇲🇽
+      </div>
+      <p style="margin-top:16px;font-size:1.1rem;color:rgba(255,255,255,0.9);font-weight:700;">
+        What happens in Sayulita... 🌵
+      </p>
+    `;
   }
 
   // ── Accordion ──
